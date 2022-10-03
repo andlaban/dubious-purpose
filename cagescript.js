@@ -11,26 +11,38 @@ class Pelicula{
     }
 }
 const peli1 = new Pelicula ("Adaptation", 200);
-const peli2 = new Pelicula ("Pig", 200);
-const peli3 = new Pelicula ("Next", 100);
-const peli4 = new Pelicula ("The Rock", 150);
+const peli2 = new Pelicula ("Next", 100);
+const peli3 = new Pelicula ("The Rock", 150);
 
 let carrito=0;
 
+let peliculas;
 function alquilar(){
-    do{
-        peli1.nombre = prompt("Ingrese el nombre de la pelicula que desee alquilar\n 2 - Para salir");
-        if(peli1.nombre!="2"){
-        console.log("Se agrego "+peli1.nombre+" al carrito");
-        carrito=carrito+peli1.precio;
-        console.log("Total $"+carrito);
-        }else{
-            alert("Gracias, vuelva prontos!");
-            break;
+do{
+    peliculas = prompt("Que pelicula desea alquilar? \n 1 - Adaptation\n 2 - Next\n 3 - The Rock\n 4 - Para salir");
+    if(peliculas!="4"){
+        switch(peliculas){
+            case "1":
+                console.log("Se agrego "+peli1.nombre+" al carrito");
+                carrito=carrito+peli1.precio;
+                console.log("Total $"+carrito);
+                break;
+            case "2":
+                console.log("Se agrego "+peli2.nombre+" al carrito");
+                carrito=carrito+peli2.precio;
+                console.log("Total $"+carrito);
+                break;
+            case "3":
+                console.log("Se agrego "+peli3.nombre+" al carrito");
+                carrito=carrito+peli3.precio;
+                console.log("Total $"+carrito);
+                break;
         }
+    }else{
+        alert("Gracias, vuelva prontos!");
+        break;
     }
-    while(Pelicula.nombre!="2")
-
+}while(peliculas!="4")
 }
 
 let pregunta=parseInt(prompt("Ingrese\n 1 - Para alquilar una pelicula\n 2 - Para salir"));
