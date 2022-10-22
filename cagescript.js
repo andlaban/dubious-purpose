@@ -1,55 +1,93 @@
-class Pelicula{
-    constructor(nombre,precio){
-        this.nombre=nombre;
-        this.precio=precio;
-    }
-    mostrarPelicula(){
-        console.log("Nombre: "+this.nombre+" Precio: "+this.precio);
-    }
-    actualizarCarrito(){
-        carrito=carrito+Pelicula.precio;
-    }
+let carrito = [];
+let items = document.getElementById("items");
+let total = document.getElementById("total");
+
+let articuloPeliculasBuenas = document.getElementById("pelisBuenas");
+function renderizarPelisBuenas(){
+for(const pelicula of peliculasBuenas){
+    let poster = document.createElement("div");
+    poster.className="card col-md-2 bg-dark m-1";
+    poster.innerHTML = `
+        <div class="card-body">
+        <img src=${pelicula.foto} class="card-img-top" alt=${pelicula.nombre}>
+            <h5 class="card-title">${pelicula.nombre}</h5>
+            <p class="card-text">$ ${pelicula.precio}</p>
+            <button id="btn${pelicula.id}" class="btn btn-danger">Comprar</button>
+        </div>
+    `;
+    articuloPeliculasBuenas.append(poster);
 }
-const peli1 = new Pelicula ("Adaptation", 200);
-const peli2 = new Pelicula ("Next", 100);
-const peli3 = new Pelicula ("The Rock", 150);
+    peliculasBuenas.forEach((pelicula) => {
+        document.getElementById(`btn${pelicula.id}`).onclick = () => {
+            agregarAlCarrito(pelicula);
+        };
+    })
+}
+renderizarPelisBuenas();
 
-let carrito=0;
+let articuloPeliculasMalas = document.getElementById("pelisMalas");
+function renderizarPelisMalas(){
+for(const pelicula of peliculasMalas){
+    let poster = document.createElement("div");
+    poster.className="card col-md-2 bg-dark m-1";
+    poster.innerHTML = `
+        <div class="card-body">
+        <img src=${pelicula.foto} class="card-img-top" alt=${pelicula.nombre}>
+            <h5 class="card-title">${pelicula.nombre}</h5>
+            <p class="card-text">$ ${pelicula.precio}</p>
+            <button id="btn${pelicula.id}" class="btn btn-danger">Comprar</button>
+        </div>
+    `;
+    articuloPeliculasMalas.append(poster);
+}
+    peliculasMalas.forEach((pelicula) => {
+        document.getElementById(`btn${pelicula.id}`).onclick = () => {
+            agregarAlCarrito(pelicula);
+        };
+    })
+}
+renderizarPelisMalas();
 
-let peliculas;
-function alquilar(){
-do{
-    peliculas = prompt("Que pelicula desea alquilar? \n 1 - Adaptation\n 2 - Next\n 3 - The Rock\n 4 - Para salir");
-    if(peliculas!="4"){
-        switch(peliculas){
-            case "1":
-                console.log("Se agrego "+peli1.nombre+" al carrito");
-                carrito=carrito+peli1.precio;
-                console.log("Total $"+carrito);
-                break;
-            case "2":
-                console.log("Se agrego "+peli2.nombre+" al carrito");
-                carrito=carrito+peli2.precio;
-                console.log("Total $"+carrito);
-                break;
-            case "3":
-                console.log("Se agrego "+peli3.nombre+" al carrito");
-                carrito=carrito+peli3.precio;
-                console.log("Total $"+carrito);
-                break;
-        }
-    }else{
-        alert("Gracias, vuelva prontos!");
-        break;
+let articuloPeliculasFeas = document.getElementById("pelisFeas");
+function renderizarPelisFeas(){
+for(const pelicula of peliculasFeas){
+    let poster = document.createElement("div");
+    poster.className="card col-md-2 bg-dark m-1";
+    poster.innerHTML = `
+        <div class="card-body">
+        <img src=${pelicula.foto} class="card-img-top" alt=${pelicula.nombre}>
+            <h5 class="card-title">${pelicula.nombre}</h5>
+            <p class="card-text">$ ${pelicula.precio}</p>
+            <button id="btn${pelicula.id}" class="btn btn-danger">Comprar</button>
+        </div>
+    `;
+    articuloPeliculasFeas.append(poster);
+}
+    peliculasFeas.forEach((pelicula) => {
+        document.getElementById(`btn${pelicula.id}`).onclick = () => {
+            agregarAlCarrito(pelicula);
+        };
+    })
+}
+renderizarPelisFeas();
+
+function agregarAlCarrito(pelicula){
+    carrito.push(pelicula)
+    Swal.fire(
+        'Producto '+pelicula.nombre,
+        'Agregado al carrito!',
+        'success'
+      );
+      items.innerHTML += `
+        <tr>
+            <td>${pelicula.id}</td>
+            <td>${pelicula.nombre}</td>
+            <td>${pelicula.precio}</td>
+        </tr>
+    `;
+    let sumador = 0;
+    for(const pelicula of carrito){
+        sumador += pelicula.precio;
     }
-}while(peliculas!="4")
+    total.innerText="Total a pagar: $"+sumador;
 }
-
-let pregunta=parseInt(prompt("Ingrese\n 1 - Para alquilar una pelicula\n 2 - Para salir"));
-if(pregunta=="1"){
-    alquilar();
-}else{
-    alert("Gracias, vuelva prontos!");
-}
-
-
