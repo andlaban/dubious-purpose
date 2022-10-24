@@ -6,7 +6,7 @@ let articuloPeliculasBuenas = document.getElementById("pelisBuenas");
 function renderizarPelisBuenas(){
 for(const pelicula of peliculasBuenas){
     let poster = document.createElement("div");
-    poster.className="card col-md-2 bg-dark m-1";
+    poster.className="card col-md-2 bg-dark";
     poster.innerHTML = `
         <div class="card-body">
         <img src=${pelicula.foto} class="card-img-top" alt=${pelicula.nombre}>
@@ -29,7 +29,7 @@ let articuloPeliculasMalas = document.getElementById("pelisMalas");
 function renderizarPelisMalas(){
 for(const pelicula of peliculasMalas){
     let poster = document.createElement("div");
-    poster.className="card col-md-2 bg-dark m-1";
+    poster.className="card col-md-2 bg-dark";
     poster.innerHTML = `
         <div class="card-body">
         <img src=${pelicula.foto} class="card-img-top" alt=${pelicula.nombre}>
@@ -52,7 +52,7 @@ let articuloPeliculasFeas = document.getElementById("pelisFeas");
 function renderizarPelisFeas(){
 for(const pelicula of peliculasFeas){
     let poster = document.createElement("div");
-    poster.className="card col-md-2 bg-dark m-1";
+    poster.className="card col-md-2 bg-dark";
     poster.innerHTML = `
         <div class="card-body">
         <img src=${pelicula.foto} class="card-img-top" alt=${pelicula.nombre}>
